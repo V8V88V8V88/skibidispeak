@@ -113,38 +113,36 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-8 dark:bg-gray-900 transition-all duration-300">
-      <div className="z-10 max-w-5xl w-full glassmorphism p-8 neon-border">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-4xl font-bold gradient-text float-animation">
-            Skibidi Language Translator
+    <main className="flex min-h-screen flex-col items-center justify-center p-8 bg-gradient-to-br from-blue-500 to-purple-600 dark:from-gray-900 dark:to-gray-800 transition-all duration-300">
+      <div className="z-10 w-full max-w-2xl bg-white dark:bg-gray-800 rounded-xl shadow-2xl overflow-hidden transition-all duration-300">
+        <div className="flex justify-between items-center p-6 border-b border-gray-200 dark:border-gray-700">
+          <h1 className="text-3xl font-bold text-gray-800 dark:text-white">
+            Skibidi Translator
           </h1>
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white hover:scale-110 transition-all duration-300"
+            className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-300"
           >
-            {theme === "light" ? <Moon size={24} /> : <Sun size={24} />}
+            {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
           </button>
         </div>
-        <div className="mb-4">
+        <div className="p-6 space-y-4">
           <textarea
-            className="w-full p-4 rounded-lg dark:bg-gray-800 dark:text-white resize-none"
+            className="w-full p-4 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white rounded-lg resize-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition-all duration-300"
             rows={4}
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Enter text to translate"
           />
-        </div>
-        <button
-          className="w-full py-3 px-6 rounded-lg flex items-center justify-center space-x-2 hover:shadow-lg transition-all duration-300"
-          onClick={handleTranslate}
-        >
-          <Zap size={24} />
-          <span>Translate</span>
-        </button>
-        <div className="mt-4">
+          <button
+            className="w-full py-3 px-6 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-lg flex items-center justify-center space-x-2 hover:from-blue-600 hover:to-purple-700 transition-all duration-300"
+            onClick={handleTranslate}
+          >
+            <Zap size={20} />
+            <span>Translate</span>
+          </button>
           <textarea
-            className="w-full p-4 rounded-lg dark:bg-gray-800 dark:text-white resize-none"
+            className="w-full p-4 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white rounded-lg resize-none"
             rows={4}
             value={output}
             readOnly

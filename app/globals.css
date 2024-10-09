@@ -3,53 +3,23 @@
 @tailwind utilities;
 
 :root {
-    --background: #0f172a;
-    --foreground: #e2e8f0;
-    --primary: #3b82f6;
-    --secondary: #10b981;
+    --background-light: #ffffff;
+    --background-dark: #1a202c;
+    --text-light: #2d3748;
+    --text-dark: #e2e8f0;
 }
 
 body {
     font-family: "Inter", sans-serif;
-    background: linear-gradient(135deg, var(--background) 0%, #1e293b 100%);
-    color: var(--foreground);
-    min-height: 100vh;
+    @apply bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300;
 }
 
-.glassmorphism {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+textarea {
+    @apply bg-gray-100 dark:bg-gray-700 border-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400;
 }
 
-.neon-border {
-    box-shadow:
-        0 0 5px var(--primary),
-        0 0 10px var(--primary),
-        0 0 15px var(--primary);
-}
-
-.gradient-text {
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-@keyframes float {
-    0% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-    100% {
-        transform: translateY(0px);
-    }
-}
-
-.float-animation {
-    animation: float 3s ease-in-out infinite;
+button {
+    @apply transition-all duration-300 ease-in-out;
 }
 
 /* Custom scrollbar */
@@ -58,44 +28,13 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
+    @apply bg-gray-200 dark:bg-gray-700;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--primary);
-    border-radius: 4px;
+    @apply bg-gray-400 dark:bg-gray-600 rounded;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--secondary);
-}
-
-/* Futuristic form elements */
-input,
-textarea {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    color: var(--foreground);
-    transition: all 0.3s ease;
-}
-
-input:focus,
-textarea:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px var(--primary);
-}
-
-button {
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
-    border: none;
-    border-radius: 8px;
-    color: white;
-    font-weight: bold;
-    transition: all 0.3s ease;
-}
-
-button:hover {
-    opacity: 0.9;
-    transform: translateY(-2px);
+    @apply bg-gray-500 dark:bg-gray-500;
 }
