@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { inter } from "next/font/google";
+import { Inter } from "next/font"; // Use "next/font" instead of "next/font/google"
 import "/app/globals.css";
 import ClientLayout from "./ClientLayout";
 
-const interFont = inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Skibidi Language Translator",
@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={interFont.className}>
+      <body className={inter.className}>
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
