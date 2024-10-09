@@ -1,10 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Moon, Sun, Zap } from "lucide-react";
 
 export default function Home() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
+  const [theme, setTheme] = useState("dark");
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    setTheme(savedTheme);
+    document.documentElement.classList.toggle("dark", savedTheme === "dark");
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+    document.documentElement.classList.toggle("dark", newTheme === "dark");
+  };
 
   const slangDictionary: { [key: string]: string } = {
     good: "fire",
@@ -36,7 +51,7 @@ export default function Home() {
     `${input} is straight up bussin', big facts.`,
     `No cap, ${input} is on another level.`,
     `Deadass, ${input} just hits different.`,
-    `${input}? That’s what’s up, no lie.`,
+    `${input}? That's what's up, no lie.`,
     `${input} got me in my feels, fr no joke.`,
     `Bruh, ${input} got everyone shook.`,
     `Ayo, ${input} is legendary!`,
@@ -98,12 +113,22 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm">
-        <h1 className="text-4xl font-bold mb-8">Skibidi Language Translator</h1>
+    <main className="flex min-h-screen flex-col items-center justify-center p-8 dark:bg-gray-900 transition-all duration-300">
+      <div className="z-10 max-w-5xl w-full glassmorphism p-8 neon-border">
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="text-4xl font-bold gradient-text float-animation">
+            Skibidi Language Translator
+          </h1>
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white hover:scale-110 transition-all duration-300"
+          >
+            {theme === "light" ? <Moon size={24} /> : <Sun size={24} />}
+          </button>
+        </div>
         <div className="mb-4">
           <textarea
-            className="w-full p-2 border rounded"
+            className="w-full p-4 rounded-lg dark:bg-gray-800 dark:text-white resize-none"
             rows={4}
             value={input}
             onChange={(e) => setInput(e.target.value)}
@@ -111,14 +136,15 @@ export default function Home() {
           />
         </div>
         <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          className="w-full py-3 px-6 rounded-lg flex items-center justify-center space-x-2 hover:shadow-lg transition-all duration-300"
           onClick={handleTranslate}
         >
-          Translate
+          <Zap size={24} />
+          <span>Translate</span>
         </button>
         <div className="mt-4">
           <textarea
-            className="w-full p-2 border rounded"
+            className="w-full p-4 rounded-lg dark:bg-gray-800 dark:text-white resize-none"
             rows={4}
             value={output}
             readOnly
